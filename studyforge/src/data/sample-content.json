@@ -1,0 +1,15 @@
+{
+  "subjects": [
+    { "id": "sub-math", "title": "رياضيات", "description": "تفاضل وتكامل", "icon": "🧮", "published": true, "last_updated": "2025-09-14T00:00:00.000Z" },
+    { "id": "sub-physics", "title": "فيزياء", "description": "موجات وحركة", "icon": "🔬", "published": true, "last_updated": "2025-09-14T00:00:00.000Z" }
+  ],
+  "sections": [
+    { "id": "sec-limits", "subject_id": "sub-math", "title": "النهايات", "order_index": 1, "published": true, "last_updated": "2025-09-14T00:00:00.000Z" }
+  ],
+  "lessons": [
+    { "id": "lesson-limit-def", "section_id": "sec-limits", "title": "تعريف النهاية", "order_index": 1, "published": true, "last_updated": "2025-09-14T00:00:00.000Z" }
+  ],
+  "media": [
+    { "id": "m1", "lesson_id": "lesson-limit-def", "type": "hls", "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8", "caption": "شرح بالفيديو", "last_updated": "2025-09-14T00:00:00.000Z" }
+  ]
+}
