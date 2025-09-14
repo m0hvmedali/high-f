@@ -1,4 +1,4 @@
-import MiniSearch from 'mini-search';
+import MiniSearch from 'minisearch';
 
 export interface SearchDoc { id: string; title: string; body?: string; type: 'lesson' | 'subject' | 'quiz' }
 

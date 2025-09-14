@@ -1,9 +1,16 @@
-import { Player } from 'lottie-react';
-import cards from '/lottie/soft-floating-cards.json?url';
+import Lottie from 'lottie-react';
+import { useEffect, useState } from 'react';
 import { useReducedMotionPref } from '@/ui/motion/useMotionPref';
 
 export default function Onboarding() {
   const reduced = useReducedMotionPref();
+  const [data, setData] = useState<any>(null);
+  useEffect(() => {
+    if (!reduced) {
+      fetch('/lottie/soft-floating-cards.json').then((r) => r.json()).then(setData).catch(() => setData(null));
+    }
+  }, [reduced]);
+
   return (
     <div className="grid gap-6 md:grid-cols-2">
       <div className="space-y-3">
@@ -16,7 +23,7 @@ export default function Onboarding() {
         </ul>
       </div>
       <div className="rounded-xl bg-surface/60 p-4 backdrop-blur shadow-soft-warm">
-        {!reduced && <Player src={cards} autoplay loop speed={0.9} style={{ height: 300 }} />}
+        {!reduced && data && <Lottie animationData={data} loop autoplay speed={0.9} style={{ height: 300 }} />}
       </div>
     </div>
   );

@@ -1,11 +1,18 @@
 import { Link } from 'react-router-dom';
-import { Player } from 'lottie-react';
-import sunrise from '/lottie/warm-sunrise.json?url';
+import Lottie from 'lottie-react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useReducedMotionPref } from '@/ui/motion/useMotionPref';
 
 export default function Home() {
   const reduced = useReducedMotionPref();
+  const [data, setData] = useState<any>(null);
+  useEffect(() => {
+    if (!reduced) {
+      fetch('/lottie/warm-sunrise.json').then((r) => r.json()).then(setData).catch(() => setData(null));
+    }
+  }, [reduced]);
+
   return (
     <div className="relative overflow-hidden">
       <div className="absolute inset-0 bg-warm-gradient opacity-70" />
@@ -23,8 +30,8 @@ export default function Home() {
           </div>
         </div>
         <motion.div initial={reduced ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduced ? 0 : 0.6 }} className="rounded-xl bg-surface/60 p-4 backdrop-blur shadow-soft-warm">
-          {!reduced && (
-            <Player src={sunrise} autoplay loop speed={0.9} style={{ width: '100%', height: 280 }} />
+          {!reduced && data && (
+            <Lottie animationData={data} loop autoplay style={{ width: '100%', height: 280, opacity: 1 }} />
           )}
         </motion.div>
       </div>
